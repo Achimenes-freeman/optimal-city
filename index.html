@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="wrapper" id="app">
+
+        <aside class="data-box">
+            <ul class="data__list">
+                <li v-for="elem in data">
+                    <div class="data__elem">
+                        <p class="data__elem-par">name <span>{{elem.name}}</span></p>
+                        <p class="data__elem-par">value <span>{{elem.value}}</span></p>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="form">
+            <div class="form-box">
+                <div class="select" @click="toggleSelectModal">
+                    <div
+                        :class="['select-options-box', !isSelectOpen && 'hide' ]"
+                    >
+                        <p class="option" v-for="elem in data" @click="selectChangeHandler" >{{elem.name}}</p>
+                    </div>
+                    <p class="select-value">{{currentName}}</p>
+                </div>
+                <label class="new-value-label" for="textValue">Enter new value:</label>
+                <input
+                    class="new-value"
+                    type="text"
+                    name="value"
+                    id="textValue"
+                    :value="currentValue"
+                    @input="changeValue"
+                >
+
+                <button @click="changeData" class="btn" type="button">Change</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="./app.js"></script>
+</body>
+</html>
